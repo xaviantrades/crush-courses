@@ -177,6 +177,12 @@ async function fetchCourses() {
         });
     });
 
+    // Shuffle (Fisher-Yates)
+    for (let i = courses.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [courses[i], courses[j]] = [courses[j], courses[i]];
+    }
+
     return courses;
 }
 
