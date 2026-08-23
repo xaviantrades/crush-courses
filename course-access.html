@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Access - Contribution</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fonts used by the design system -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,340;0,600;1,500&family=Public+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root{
+            --paper:   #EFE7D8;
+            --paper-2: #E7DCC6;
+            --ink:     #1E2A38;
+            --ink-soft:#4B5768;
+            --slate:   #7C8CA0;
+            --brass:   #A9803F;
+            --oxblood: #7A2E22;
+            --rule:    #C9BCA0;
+
+            --serif: 'Fraunces', serif;
+            --sans:  'Public Sans', sans-serif;
+            --mono:  'IBM Plex Mono', monospace;
+        }
+
+        *{ box-sizing:border-box; }
+
+        body{
+            margin:0;
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:24px;
+            background:var(--paper);
+            color:var(--ink);
+            font-family:var(--sans);
+            font-size:16px;
+            line-height:1.5;
+            -webkit-font-smoothing:antialiased;
+        }
+
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== Card shell ===== */
+        .contribution-card{
+            width:100%;
+            max-width:480px;
+            background:var(--paper);
+            border:1px solid var(--rule);
+            overflow:hidden;
+        }
+
+        /* ===== Header ===== */
+        .card-header{
+            background:var(--ink);
+            color:var(--paper);
+            text-align:center;
+            padding:44px 36px 40px;
+        }
+
+        .card-header .eyebrow{
+            font-family:var(--mono);
+            font-size:11px;
+            letter-spacing:.16em;
+            text-transform:uppercase;
+            color:var(--brass);
+            font-weight:600;
+            display:block;
+            margin-bottom:12px;
+        }
+
+        .card-header h1{
+            font-family:var(--serif);
+            font-weight:600;
+            font-size:30px;
+            line-height:1.15;
+            margin:0 0 14px;
+        }
+
+        .card-header h1 em{
+            font-style:italic;
+            font-weight:500;
+            color:#E3A857;
+        }
+
+        .card-header p{
+            font-size:14px;
+            line-height:1.6;
+            color:rgba(239,231,216,.82);
+            margin:0;
+        }
+
+        .price-pill{
+            font-family:var(--mono);
+            font-weight:600;
+            color:var(--ink);
+            background:var(--brass);
+            padding:2px 8px;
+            border-radius:2px;
+        }
+
+        /* ===== Body ===== */
+        .card-body{ padding:32px 36px 36px; }
+
+        .section-title{
+            font-family:var(--serif);
+            font-weight:600;
+            font-size:18px;
+            text-align:center;
+            margin:0 0 18px;
+        }
+
+        /* ===== Tabs ===== */
+        .tab-row{
+            display:flex;
+            gap:6px;
+            background:var(--paper-2);
+            border:1px solid var(--rule);
+            padding:5px;
+            margin-bottom:24px;
+        }
+
+        .tab-btn{
+            flex:1;
+            background:none;
+            border:none;
+            font-family:var(--mono);
+            font-size:12.5px;
+            letter-spacing:.03em;
+            color:var(--ink-soft);
+            padding:9px 6px;
+            cursor:pointer;
+            transition:.15s ease;
+        }
+
+        .tab-btn i{ margin-right:5px; }
+
+        .tab-btn.active-tab{
+            background:var(--paper);
+            color:var(--ink);
+            font-weight:600;
+            box-shadow:0 1px 0 var(--rule) inset;
+            border:1px solid var(--rule);
+        }
+
+        /* ===== Payment details panel ===== */
+        .details-panel{
+            background:var(--paper-2);
+            border:1px solid var(--rule);
+            padding:20px;
+            margin-bottom:32px;
+            min-height:130px;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+        }
+
+        .details-panel p{
+            font-size:13.5px;
+            color:var(--ink-soft);
+            margin:0 0 10px;
+        }
+
+        .details-panel p strong{ color:var(--ink); }
+
+        .address-row{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:12px;
+            background:var(--paper);
+            border:1px solid var(--rule);
+            padding:12px 14px;
+        }
+
+        .address-row code,
+        .address-row span{
+            font-family:var(--mono);
+            font-size:12px;
+            color:var(--ink);
+            word-break:break-all;
+        }
+
+        .copy-btn{
+            flex:none;
+            background:none;
+            border:none;
+            color:var(--slate);
+            cursor:pointer;
+            font-size:16px;
+            transition:color .15s ease;
+        }
+
+        .copy-btn:hover{ color:var(--oxblood); }
+
+        .payment-panel.hidden{ display:none; }
+
+        /* ===== Verify form ===== */
+        hr.divider{
+            border:none;
+            border-top:1px solid var(--rule);
+            margin:0 0 26px;
+        }
+
+        h3.form-title{
+            font-family:var(--serif);
+            font-weight:600;
+            font-size:16px;
+            margin:0 0 8px;
+        }
+
+        p.form-hint{
+            font-family:var(--mono);
+            font-size:11.5px;
+            color:var(--slate);
+            line-height:1.6;
+            margin:0 0 20px;
+        }
+
+        .field{ margin-bottom:16px; }
+
+        .field label{
+            display:block;
+            font-family:var(--mono);
+            font-size:11px;
+            letter-spacing:.08em;
+            text-transform:uppercase;
+            color:var(--ink-soft);
+            margin-bottom:7px;
+        }
+
+        .field label .req{ color:var(--oxblood); }
+
+        .field input[type="email"],
+        .field input[type="text"]{
+            width:100%;
+            padding:11px 13px;
+            font-family:var(--sans);
+            font-size:14px;
+            color:var(--ink);
+            background:var(--paper);
+            border:1px solid var(--rule);
+            outline:none;
+            transition:border-color .15s ease, box-shadow .15s ease;
+        }
+
+        .field input::placeholder{ color:var(--slate); }
+
+        .field input:focus{
+            border-color:var(--oxblood);
+            box-shadow:0 0 0 3px rgba(122,46,34,.12);
+        }
+
+        .field input[type="file"]{
+            width:100%;
+            font-family:var(--sans);
+            font-size:13px;
+            color:var(--ink-soft);
+            border:1px solid var(--rule);
+            padding:8px;
+            background:var(--paper);
+        }
+
+        .field input[type="file"]::file-selector-button{
+            font-family:var(--mono);
+            font-size:11px;
+            letter-spacing:.05em;
+            text-transform:uppercase;
+            color:var(--ink);
+            background:var(--paper-2);
+            border:1px solid var(--rule);
+            padding:7px 12px;
+            margin-right:12px;
+            cursor:pointer;
+            transition:.15s ease;
+        }
+
+        .field input[type="file"]::file-selector-button:hover{
+            background:var(--brass);
+            color:var(--paper);
+            border-color:var(--brass);
+        }
+
+        .submit-btn{
+            width:100%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:8px;
+            font-family:var(--mono);
+            font-size:12.5px;
+            font-weight:600;
+            letter-spacing:.08em;
+            text-transform:uppercase;
+            color:var(--paper);
+            background:var(--ink);
+            border:1px solid var(--ink);
+            padding:14px;
+            margin-top:6px;
+            cursor:pointer;
+            transition:.15s ease;
+        }
+
+        .submit-btn:hover{ background:var(--oxblood); border-color:var(--oxblood); }
+        .submit-btn:disabled{ opacity:.7; cursor:default; }
+
+        /* ===== Toast ===== */
+        #toast{
+            position:fixed;
+            bottom:20px; right:20px;
+            display:flex;
+            align-items:center;
+            gap:10px;
+            background:var(--ink);
+            color:var(--paper);
+            font-family:var(--sans);
+            font-size:13.5px;
+            padding:12px 20px;
+            border:1px solid var(--rule);
+            box-shadow:0 12px 24px rgba(20,24,30,.25);
+            transform:translateY(80px);
+            opacity:0;
+            transition:transform .3s ease, opacity .3s ease;
+        }
+
+        #toast.show{ transform:translateY(0); opacity:1; }
+        #toast-icon.text-green-400{ color:#7FA36B; }
+        #toast-icon.text-blue-400{ color:#7DA0C4; }
+    </style>
+</head>
+<body>
+
+    <div class="contribution-card">
+
+        <!-- Header Section -->
+        <div class="card-header">
+            <span class="eyebrow">Contribution</span>
+            <h1>Unlock <em>Lifetime</em> Access</h1>
+            <p>
+                We believe education should be free. To keep our non-profit project alive, we request a one-time
+                <span class="price-pill">$5 USD</span> contribution to cover cloud storage and server maintenance.
+            </p>
+        </div>
+
+        <div class="card-body">
+            <h2 class="section-title">Select Payment Method to receive the download Link For <strong><span id="courseTitle" style="color: green;"></span></strong></h2>
+
+            <!-- Payment Method Tabs -->
+            <div class="tab-row">
+                <button onclick="switchTab('crypto-btc')" id="tab-crypto-btc" class="tab-btn active-tab">
+                    <i class="fa-brands fa-bitcoin"></i>BTC
+                </button>
+                <button onclick="switchTab('crypto-eth')" id="tab-crypto-eth" class="tab-btn">
+                    <i class="fa-brands fa-ethereum"></i>ETH
+                </button>
+                <button onclick="switchTab('paypal')" id="tab-paypal" class="tab-btn">
+                    <i class="fa-brands fa-paypal"></i>PayPal
+                </button>
+            </div>
+
+            <!-- Payment Details Panels -->
+            <div class="details-panel">
+
+                <!-- Bitcoin Panel -->
+                <div id="panel-crypto-btc" class="payment-panel fade-in">
+                    <p>Send exactly <strong>$5 USD</strong> equivalent in Bitcoin to:</p>
+                    <div class="address-row">
+                        <code id="btc-address">bc1q5w9hnd376md03gpzc7sglydjx4cj3zxnzuqtpl</code>
+                        <button onclick="copyToClipboard('btc-address')" class="copy-btn" title="Copy Address">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Ethereum Panel -->
+                <div id="panel-crypto-eth" class="payment-panel fade-in hidden">
+                    <p>Send exactly <strong>$5 USD</strong> equivalent in Ethereum to:</p>
+                    <div class="address-row">
+                        <code id="eth-address">0xd2f3944807AEE4906d55039cC1267F8264E2912d</code>
+                        <button onclick="copyToClipboard('eth-address')" class="copy-btn" title="Copy Address">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PayPal Panel -->
+                <div id="panel-paypal" class="payment-panel fade-in hidden">
+                    <p>Send <strong>$5 USD</strong> via PayPal Friends & Family to:</p>
+                    <div class="address-row">
+                        <span id="paypal-email">support@yourdomain.com</span>
+                        <button onclick="copyToClipboard('paypal-email')" class="copy-btn" title="Copy Email">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Verification Form -->
+            <hr class="divider">
+            <h3 class="form-title">Verify Payment</h3>
+            <p class="form-hint">Submit your transaction details below. Your download link will be emailed immediately upon verification.</p>
+
+            <form id="verification-form">
+                <div class="field">
+                    <label>Your Email Address <span class="req">*</span></label>
+                    <input type="email" required placeholder="where to send the courses">
+                </div>
+
+                <div class="field">
+                    <label>Transaction ID / Hash <span class="req">*</span></label>
+                    <input type="text" required placeholder="e.g. 0x123... or PayPal Receipt No.">
+                </div>
+
+                <div class="field">
+                    <label>Screenshot Proof (Optional)</label>
+                    <input type="file" accept="image/*">
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span>Confirm Payment & Get Access</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification (Hidden by default) -->
+    <div id="toast">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-green-400"></i>
+        <span id="toast-msg">Copied to clipboard!</span>
+    </div>
+
+    <script>
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active-tab');
+            });
+            document.querySelectorAll('.payment-panel').forEach(panel => {
+                panel.classList.add('hidden');
+            });
+
+            const activeBtn = document.getElementById(`tab-${tabId}`);
+            activeBtn.classList.add('active-tab');
+
+            document.getElementById(`panel-${tabId}`).classList.remove('hidden');
+        }
+
+        // Copy to Clipboard Utility
+        function copyToClipboard(elementId) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                showToast('Copied to clipboard!', 'fa-copy', 'text-blue-400');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        // Form Submission -> opens Gmail with the details pre-filled
+        const RECEIVER_EMAIL = 'geraldsaviour623@gmail.com';
+
+        document.getElementById('verification-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+
+            const email = this.querySelector('input[type="email"]').value.trim();
+            const txnId = this.querySelector('input[type="text"]').value.trim();
+            const activeTabBtn = document.querySelector('.tab-btn.active-tab');
+            const method = activeTabBtn ? activeTabBtn.textContent.trim() : 'Unknown';
+            const fileInput = this.querySelector('input[type="file"]');
+            const hasScreenshot = fileInput && fileInput.files.length > 0;
+          
+const selectedCourse =
+    JSON.parse(sessionStorage.getItem("selectedCourse"));
+
+            const subject = `Payment Verification - ${email}`;
+            const body =
+`New payment verification submitted:
+Cousre: ${selectedCourse.title}
+Mentor: ${selectedCourse.mentor}
+Buyer Email: ${email}
+Payment Method: ${method}
+Transaction ID / Hash: ${txnId}
+Screenshot Attached: ${hasScreenshot ? 'Yes (attach manually, mailto cannot carry files)' : 'No'}`;
+
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(RECEIVER_EMAIL)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i><span>Opening Gmail...</span>';
+            btn.disabled = true;
+
+            window.open(gmailUrl, '_blank');
+
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                this.reset();
+                showToast('Gmail opened — please hit send!', 'fa-paper-plane', 'text-blue-400');
+            }, 800);
+        });
+
+        // Toast Notification System
+        function showToast(message, iconClass, colorClass) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.innerText = message;
+            toastIcon.className = `fa-solid ${iconClass} ${colorClass}`;
+
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+      const selectedCourse =
+    JSON.parse(sessionStorage.getItem("selectedCourse"));
+
+if (selectedCourse) {
+    
+  document.getElementById("courseTitle").textContent =
+    selectedCourse.title;
+
+
+}
+    </script>
+</body>
+</html>

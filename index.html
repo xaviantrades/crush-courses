@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Course Fx — Trading courses, taught by people who trade</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,600;1,9..144,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+<style>
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrap nav-row">
+    <a class="logo" href="#top">
+      <span class="wordmark">Free Course <em>Fx</em></span>
+      <span class="tagline">FX · EDUCATION · NO COST TO START</span>
+    </a>
+
+    <nav class="primary">
+      
+      <button class="browse-btn" id="browseBtn" aria-expanded="false" aria-controls="megaMenu" >
+        Browse All Courses<span class="caret">▾</span>
+      </button>
+    </nav>
+  </div>
+
+  
+  <div class="mega" id="megaMenu">
+    <div class="wrap mega-grid">
+      <div class="mega-col" id="mentor">
+        <h4>Mentors</h4>
+        
+        <ul>
+          <li>
+            <button class="top-item">Loading......<span class="chev" aria-hidden="true">›</span></button>
+            <ul class="submenu">
+              Loading.....
+            </ul>
+          </li>
+          <li>
+            
+        </ul>
+      </div>
+
+
+
+      
+      <div class="mega-col" >
+        <h4>Study Level</h4>
+        <ul id="levell">
+          <li>
+            <button class="top-item">Loading......<span class="chev" aria-hidden="true">›</span></button>
+            <ul class="submenu">
+              Loading......
+            </ul>
+          </li>
+          
+            
+        </ul>
+      </div>
+
+
+
+      
+      <div class="mega-col">
+        <h4>Trading Style</h4>
+        <ul id="style">
+          <li>
+            <button class="top-item">Loading......<span class="chev" aria-hidden="true">›</span></button>
+            <ul class="submenu">
+              
+            </ul>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="mega-col">
+        <h4>Entity Traded</h4>
+        <ul id="entity">
+          <li>
+            <button class="top-item">Loading......<span class="chev" aria-hidden="true">›</span></button>
+            <ul class="submenu">
+              
+            </ul>
+          </li>
+          
+        </ul>
+      </div>
+
+
+      <div class="mega-col">
+        <h4>Analysis Mode</h4>
+        <ul>
+          <li>
+            <button class="top-item">Loading......<span class="chev" aria-hidden="true">›</span></button>
+            <ul class="submenu">
+              
+            </ul>
+          </li>
+          
+        </ul>
+      </div>
+
+
+      <div class="mega-col">
+        <h4>File Type</h4>
+        <ul id="file">
+          <li>
+            <button class="top-item">Loading......<span class="chev" aria-hidden="true">›</span></button>
+            <ul class="submenu">
+              
+            </ul>
+          </li>
+          
+        </ul>
+      </div>
+
+
+      
+      <div class="mega-col">
+        <h4>Time Frame</h4>
+        <ul id="timeframe">
+          <li>
+            <button class="top-item">Loading......<span class="chev" aria-hidden="true">›</span></button>
+            <ul class="submenu">
+              
+            </ul>
+          
+        </ul>
+      </div>
+
+      <div class="mega-col">
+        <h4>Rating</h4>
+        <ul id="rating">
+          <li>
+            <button class="top-item">Loading......<span class="chev" aria-hidden="true">›</span></button>
+            <ul class="submenu">
+              
+            </ul>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+          
+</header>
+  <div class="category-overlay" id="categoryOverlay">
+
+    <div class="category-popup" onclick="event.stopPropagation()">
+
+        <button class="close-category" id="closeCategory">
+            &times;
+        </button>
+
+        <h2 id="categoryHeading">
+            Category
+        </h2>
+
+        <div class="category-popup-content" id="categoryContent">
+            Content goes here.
+        </div>
+
+    </div>
+
+  </div>
+
+<main id="top">
+
+  <section class="hero wrap">
+    <!-- SEARCH -->
+    
+    <div class="search-wrapper">
+  <input
+    type="text"
+    id="courseSearchInput"
+    class="search-input"
+    placeholder="Search courses..."
+  />
+    </div>
+    
+<div id="courseResults" class="course-results">
+  <span>Built by traders, not marketers.</span>
+   
+</div>
+  </section>
+
+  <section class="catalog wrap" id="courses">
+    <div class="catalog-head">
+      <div>
+        <div class="eyebrow">The board</div>
+        <h2>This week's courses</h2>
+      </div>
+      <div class="count">Refresh Page to View All courses</div>
+    </div>
+
+    <div class="grid">
+
+
+
+   
+      
+<div class="cards-container" id="coursesList">
+  
+      <article class="card" >
+    
+      </article>
+
+</div>
+
+
+      
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div>
+        <div class="eyebrow">About the board</div>
+        <h2>Why it's free</h2>
+      </div>
+      <p class="about-copy">
+        Free Course Fx started as a shared drive between six traders who were tired of recommending the same overpriced course to every beginner who asked. <strong>Every mentor here trades their own account</strong>, teaches for free, and answers questions directly — no upsell waiting at the end of the last lesson. If a course stops being useful, we take it down. That's the whole model.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="tape">
+      PIPS · SPREAD · LEVERAGE · DRAWDOWN · LIQUIDITY · SUPPORT &amp; RESISTANCE · RISK MANAGEMENT · BREAKOUT · CANDLESTICK · SLIPPAGE
+    </div>
+
+    <div class="foot-grid">
+      <div>
+        <h4>Contact</h4>
+        <p>Questions about a specific course? Every listing links straight to its mentor.</p>
+        <p>For everything else — <a href="mailto:hello@freecoursefx.example">hello@freecoursefx.example</a></p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <div class="foot-nav">
+          <a href="#top">About Us</a>
+          <a href="#courses">Browse Courses</a>
+          <a href="#about">Our Story</a>
+        </div>
+      </div>
+      <div>
+        <h4>Board Hours</h4>
+        <p>New courses added most Mondays.<br>London session, naturally.</p>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <span>© 2026 Free Course Fx</span>
+      <span>Built by traders, not marketers.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const browseBtn = document.getElementById('browseBtn');
+const mega = document.getElementById('megaMenu');
+
+function closeMega(){
+  mega.classList.remove('open');
+  browseBtn.setAttribute('aria-expanded', 'false');
+  const coursesList =
+    document.getElementById("coursesList");
+
+coursesList.style.display = "block";
+}
+
+function openMega(){
+  mega.classList.add('open');
+  browseBtn.setAttribute('aria-expanded', 'true');
+
+  const coursesList =
+    document.getElementById("coursesList");
+
+coursesList.style.display = "none";
+}
+
+browseBtn.addEventListener('click', function (e) {
+  e.stopPropagation();
+
+  if (!mega) return;
+
+  if (mega.classList.contains('open')) {
+    closeMega();
+
+    const coursesList =
+    document.getElementById("coursesList");
+
+coursesList.style.display = "block";
+  } else {
+    openMega();
+
+    const coursesList =
+    document.getElementById("coursesList");
+
+coursesList.style.display = "none";
+  }
+});
+
+document.addEventListener('click', function (e) {
+  if (!mega.contains(e.target) && e.target !== browseBtn) {
+    closeMega();
+  }
+});
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') closeMega();
+});
+
+// Visual-only selection state for filter options (no live filtering wired up)
+document.querySelectorAll('.mega-col button').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    btn.classList.toggle('selected');
+  });
+});
+
+</script>
+<script src="logic.js"></script>
+<script type="module" src="course-get.js"></script>
+</body>
+</html>
