@@ -104,7 +104,7 @@ function createCourseHTML(data, docId = "") {
                 </span>
 
                 <span class="tag">
-                    ${data.type || "PDF"}
+                    ${data.file || "PDF"}
                 </span>
 
                 <span class="tag">
