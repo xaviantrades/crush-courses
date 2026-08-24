@@ -493,56 +493,12 @@ Payment Method: ${method}
 Transaction ID / Hash: ${txnId}
 Screenshot Attached: ${hasScreenshot ? 'Yes (attach manually, mailto cannot carry files)' : 'No'}`;
 
-            const subject = `Payment Verification - ${email}`;
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(RECEIVER_EMAIL)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-const body = `New payment verification submitted:
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i><span>Opening Gmail...</span>';
+            btn.disabled = true;
 
-Course: ${selectedCourse.title}
-Mentor: ${selectedCourse.mentor}
-Buyer Email: ${email}
-Payment Method: ${method}
-Transaction ID / Hash: ${txnId}
-Screenshot Attached: ${
-    hasScreenshot
-        ? "Yes (please attach it manually)"
-        : "No"
-}`;
-
-const mailto =
-    `mailto:${encodeURIComponent(RECEIVER_EMAIL)}` +
-    `?subject=${encodeURIComponent(subject)}` +
-    `&body=${encodeURIComponent(body)}`;
-
-const gmailIntent =
-    `intent://compose?to=${encodeURIComponent(RECEIVER_EMAIL)}` +
-    `&subject=${encodeURIComponent(subject)}` +
-    `&body=${encodeURIComponent(body)}` +
-    `#Intent;scheme=gmail;package=com.google.android.gm;end`;
-
-btn.innerHTML =
-    '<i class="fa-solid fa-circle-notch fa-spin"></i><span>Opening Gmail...</span>';
-
-btn.disabled = true;
-
-// First try Gmail Android app
-window.location.href = gmailIntent;
-
-// Fallback to Android's email handler
-setTimeout(() => {
-    window.location.href = mailto;
-}, 1200);
-
-setTimeout(() => {
-    btn.innerHTML = originalText;
-    btn.disabled = false;
-    this.reset();
-
-    showToast(
-        'Gmail opened — please review and send!',
-        'fa-paper-plane',
-        'text-blue-400'
-    );
-}, 1800);
+            window.open(gmailUrl, '_blank');
 
             setTimeout(() => {
                 btn.innerHTML = originalText;
