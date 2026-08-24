@@ -196,7 +196,7 @@
   <section class="catalog wrap" id="courses">
     <div class="catalog-head">
       <div>
-        <div class="eyebrow">The board</div>
+        <div class="eyebrow" id="gmail-link">click here to request a cousre</div>
         <h2>This week's courses</h2>
       </div>
       <div class="count">Refresh Page to View All courses</div>
@@ -245,7 +245,7 @@
       <div>
         <h4>Contact</h4>
         <p>Questions about a specific course? Every listing links straight to its mentor.</p>
-        <p>For everything else — <a href="geraldsaviour623@gmail.com">hello@freecoursefx.example</a></p>
+        <p>For everything else — <a href="geraldsaviour623@gmail.com">geraldsaviour623@gmail.com</a></p>
       </div>
       <div>
         <h4>Site</h4>
@@ -328,6 +328,21 @@ document.querySelectorAll('.mega-col button').forEach(function (btn) {
   btn.addEventListener('click', function () {
     btn.classList.toggle('selected');
   });
+});
+
+  const myGmail = "geraldsaviour623@gmail.com";
+
+document.getElementById("gmail-link").addEventListener("click", function () {
+
+    const subject = "Conversion Request";
+
+    const gmailUrl =
+        "https://mail.google.com/mail/?view=cm" +
+        "&fs=1" +
+        "&to=" + encodeURIComponent(myGmail) +
+        "&su=" + encodeURIComponent(subject);
+
+    window.location.href = gmailUrl;
 });
 
 </script>
