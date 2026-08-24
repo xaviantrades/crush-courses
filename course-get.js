@@ -131,7 +131,7 @@ function createCourseHTML(data, docId = "") {
                 </span>
 
                 <a class="view-link" href="course-access.html">
-                    View →
+                    Download this cousre →
                 </a>
 
             </div>
