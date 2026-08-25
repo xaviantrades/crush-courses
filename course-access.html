@@ -203,114 +203,92 @@
 
         .payment-panel.hidden{ display:none; }
 
-        /* ===== Verify form ===== */
-        hr.divider{
-            border:none;
+        /* ===== Payment Confirmation Contact ===== */
+        .contact-section{
             border-top:1px solid var(--rule);
-            margin:0 0 26px;
+            padding-top:24px;
+            margin-top:4px;
         }
 
-        h3.form-title{
+        .contact-title{
             font-family:var(--serif);
             font-weight:600;
-            font-size:16px;
+            font-size:17px;
             margin:0 0 8px;
         }
 
-        p.form-hint{
+        .contact-hint{
             font-family:var(--mono);
             font-size:11.5px;
             color:var(--slate);
             line-height:1.6;
-            margin:0 0 20px;
+            margin:0 0 18px;
         }
 
-        .field{ margin-bottom:16px; }
-
-        .field label{
+        .contact-label{
             display:block;
             font-family:var(--mono);
-            font-size:11px;
+            font-size:10.5px;
             letter-spacing:.08em;
             text-transform:uppercase;
             color:var(--ink-soft);
             margin-bottom:7px;
         }
 
-        .field label .req{ color:var(--oxblood); }
-
-        .field input[type="email"],
-        .field input[type="text"]{
-            width:100%;
-            padding:11px 13px;
-            font-family:var(--sans);
-            font-size:14px;
-            color:var(--ink);
+        .contact-row{
+            display:flex;
+            align-items:center;
+            gap:10px;
             background:var(--paper);
             border:1px solid var(--rule);
-            outline:none;
-            transition:border-color .15s ease, box-shadow .15s ease;
+            padding:11px 12px;
+            margin-bottom:12px;
         }
 
-        .field input::placeholder{ color:var(--slate); }
-
-        .field input:focus{
-            border-color:var(--oxblood);
-            box-shadow:0 0 0 3px rgba(122,46,34,.12);
-        }
-
-        .field input[type="file"]{
-            width:100%;
-            font-family:var(--sans);
-            font-size:13px;
-            color:var(--ink-soft);
-            border:1px solid var(--rule);
-            padding:8px;
-            background:var(--paper);
-        }
-
-        .field input[type="file"]::file-selector-button{
+        .contact-row .contact-value{
+            flex:1;
+            min-width:0;
             font-family:var(--mono);
-            font-size:11px;
-            letter-spacing:.05em;
-            text-transform:uppercase;
+            font-size:12px;
             color:var(--ink);
-            background:var(--paper-2);
-            border:1px solid var(--rule);
-            padding:7px 12px;
-            margin-right:12px;
-            cursor:pointer;
-            transition:.15s ease;
+            word-break:break-all;
         }
 
-        .field input[type="file"]::file-selector-button:hover{
-            background:var(--brass);
-            color:var(--paper);
-            border-color:var(--brass);
+        .contact-row .copy-btn{
+            flex:none;
         }
 
-        .submit-btn{
-            width:100%;
+        .whatsapp-contact{
             display:flex;
             align-items:center;
             justify-content:center;
             gap:8px;
+            width:100%;
+            background:#25D366;
+            color:#fff;
+            border:1px solid #25D366;
+            padding:12px 14px;
+            text-decoration:none;
             font-family:var(--mono);
-            font-size:12.5px;
+            font-size:12px;
             font-weight:600;
-            letter-spacing:.08em;
-            text-transform:uppercase;
-            color:var(--paper);
-            background:var(--ink);
-            border:1px solid var(--ink);
-            padding:14px;
-            margin-top:6px;
-            cursor:pointer;
+            letter-spacing:.04em;
             transition:.15s ease;
         }
 
-        .submit-btn:hover{ background:var(--oxblood); border-color:var(--oxblood); }
-        .submit-btn:disabled{ opacity:.7; cursor:default; }
+        .whatsapp-contact:hover{
+            filter:brightness(.95);
+        }
+
+        .proof-note{
+            margin:0 0 18px;
+            padding:12px 13px;
+            background:var(--paper-2);
+            border-left:3px solid var(--brass);
+            color:var(--ink-soft);
+            font-size:13px;
+            line-height:1.55;
+        }
 
         /* ===== Toast ===== */
         #toast{
@@ -402,35 +380,31 @@
                     </div>
                 </div>
             </div>
-          <div> Send payment proof(transactionID)
-            ==> geraldsaviour623@gmail.com</div>
+          <!-- Payment Confirmation Contact -->
+          <div class="contact-section">
+              <h3 class="contact-title">Send Payment Proof</h3>
+              <p class="contact-hint">
+                  After payment, send your transaction ID and a screenshot of the payment proof to either our Gmail account or WhatsApp.
+              </p>
 
-            <!-- Verification Form -->
-            <hr class="divider">
-            <h3 class="form-title">Verify Payment</h3>
-            <p class="form-hint">Submit your transaction details below. Your download link will be emailed immediately upon verification.</p>
+              <p class="proof-note">
+                  Include your <strong>transaction ID / hash</strong> and <strong>payment screenshot</strong> so the payment can be verified and your download link can be provided.
+              </p>
 
-            <form id="verification-form">
-                <div class="field">
-                    <label>Your Email Address <span class="req">*</span></label>
-                    <input type="email" required placeholder="where to send the courses">
-                </div>
+              <span class="contact-label">Gmail</span>
+              <div class="contact-row">
+                  <span id="receiver-email" class="contact-value">geraldsaviour623@gmail.com</span>
+                  <button onclick="copyToClipboard('receiver-email')" class="copy-btn" title="Copy Gmail address" aria-label="Copy Gmail address">
+                      <i class="fa-regular fa-copy"></i>
+                  </button>
+              </div>
 
-                <div class="field">
-                    <label>Transaction ID / Hash <span class="req">*</span></label>
-                    <input type="text" required placeholder="e.g. 0x123... or PayPal Receipt No.">
-                </div>
-
-                <div class="field">
-                    <label>Screenshot Proof (Optional)</label>
-                    <input type="file" accept="image/*">
-                </div>
-
-                <button type="submit" class="submit-btn">
-                    <span>Confirm Payment & Get Access</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
-            </form>
+              <span class="contact-label">WhatsApp</span>
+              <a href="https://wa.me/256780611480" target="_blank" rel="noopener noreferrer" class="whatsapp-contact">
+                  <i class="fa-brands fa-whatsapp"></i>
+                  <span>Contact on WhatsApp &amp; Send Payment Proof</span>
+              </a>
+          </div>
         </div>
     </div>
 
@@ -466,49 +440,8 @@
             });
         }
 
-        // Form Submission -> opens Gmail with the details pre-filled
-        const RECEIVER_EMAIL = 'geraldsaviour623@gmail.com';
-
-        document.getElementById('verification-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const btn = this.querySelector('button[type="submit"]');
-            const originalText = btn.innerHTML;
-
-            const email = this.querySelector('input[type="email"]').value.trim();
-            const txnId = this.querySelector('input[type="text"]').value.trim();
-            const activeTabBtn = document.querySelector('.tab-btn.active-tab');
-            const method = activeTabBtn ? activeTabBtn.textContent.trim() : 'Unknown';
-            const fileInput = this.querySelector('input[type="file"]');
-            const hasScreenshot = fileInput && fileInput.files.length > 0;
-          
-const selectedCourse =
-    JSON.parse(sessionStorage.getItem("selectedCourse"));
-
-            const subject = `Payment Verification - ${email}`;
-            const body =
-`New payment verification submitted:
-Cousre: ${selectedCourse.title}
-Mentor: ${selectedCourse.mentor}
-Buyer Email: ${email}
-Payment Method: ${method}
-Transaction ID / Hash: ${txnId}
-Screenshot Attached: ${hasScreenshot ? 'Yes (attach manually, mailto cannot carry files)' : 'No'}`;
-
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(RECEIVER_EMAIL)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i><span>Opening Gmail...</span>';
-            btn.disabled = true;
-
-            window.open(gmailUrl, '_blank');
-
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                this.reset();
-                showToast('Gmail opened — please hit send!', 'fa-paper-plane', 'text-blue-400');
-            }, 800);
-        });
+        // Payment verification is handled directly through the displayed Gmail address or WhatsApp contact.
+        // No automatic Gmail compose/linking logic is used.
 
         // Toast Notification System
         function showToast(message, iconClass, colorClass) {
